@@ -15,10 +15,10 @@
             --bg-color: #121212;
             --text-color: #ffffff;
             --text-sub: #d4d4d4;
-            --glass-bg: rgba(30, 30, 30, 0.6);
-            --glass-border: rgba(212, 175, 55, 0.2);
+            --glass-bg: rgba(25, 25, 25, 0.75);
+            --glass-border: rgba(212, 175, 55, 0.25);
             --accent-bronze: #d4af37;
-            --accent-bronze-hover: #b38f27;
+            --accent-bronze-hover: #e6c547;
         }
 
         body {
@@ -88,34 +88,69 @@
             color: #ffffff !important;
         }
 
-        .glass-card {
+        .glass-card, .portfolio-card {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 18px;
+            border-radius: 20px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: transform 0.25s ease, border-color 0.25s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .glass-card:hover {
-            transform: translateY(-4px);
+        .glass-card:hover, .portfolio-card:hover {
+            transform: translateY(-5px);
             border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* 💊 تصميم كروت الخدمات والأيقونات (مع ظلال منضبطة وغير مشتتة) */
+        .service-capsule-card {
+            background: linear-gradient(135deg, rgba(28, 28, 28, 0.9) 0%, rgba(15, 15, 15, 0.98) 100%);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            /* ظلال مركزة ونقية غير مشتتة مطابقة للمعايير العالمية */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                        inset 0 -2px 4px rgba(0, 0, 0, 0.7);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+        .service-capsule-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7),
+                        0 0 15px rgba(212, 175, 55, 0.15),
+                        inset 0 2px 3px rgba(255, 255, 255, 0.25),
+                        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 💊 أيقونات الخدمات (تحديد حاد وانعكاس نظيف) */
+        .service-icon-capsule {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #f3d459 0%, #d4af37 50%, #aa8520 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #121212;
+            font-size: 1.5rem;
+            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.25),
+                        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+                        inset 0 -2px 3px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .service-capsule-card:hover .service-icon-capsule {
+            transform: scale(1.08) rotate(4deg);
         }
 
         .portfolio-card {
             position: relative;
-            border-radius: 18px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
             background: #1a1a1a;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(212, 175, 55, 0.5);
-        }
+        
         .portfolio-img-container {
             position: relative;
             height: 280px;
@@ -130,14 +165,19 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
         }
+        .portfolio-card:hover .portfolio-img-container img {
+            transform: scale(1.08);
+        }
+
         .portfolio-overlay {
             position: absolute;
             bottom: -100%;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(18, 18, 18, 0.85);
+            background: rgba(18, 18, 18, 0.88);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border-top: 1px solid rgba(212, 175, 55, 0.3);
@@ -169,21 +209,33 @@
             display: block;
         }
 
+        /* 💊 تصميم كبسولة الأزرار (ظلال متوازنة واحترافية) */
         .btn-custom-primary {
-            background-color: var(--accent-bronze);
+            background: linear-gradient(135deg, #f3d459 0%, #d4af37 50%, #aa8520 100%);
             border: none;
             color: #121212 !important;
             font-weight: 700;
-            padding: 10px 24px;
+            padding: 12px 32px;
             border-radius: 50px;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: background-color 0.2s, transform 0.2s;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.7),
+                        inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
         }
         .btn-custom-primary:hover {
-            background-color: var(--accent-bronze-hover);
+            background: linear-gradient(135deg, #f7e070 0%, #e6c547 50%, #b89125 100%);
             color: #121212 !important;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(212, 175, 55, 0.45),
+                        inset 0 3px 6px rgba(255, 255, 255, 0.85),
+                        inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+        }
+        .btn-custom-primary:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3),
+                        inset 0 2px 4px rgba(0, 0, 0, 0.4);
         }
 
         .whatsapp-btn {
@@ -194,18 +246,33 @@
         }
 
         .btn-custom-outline {
-            background: transparent;
+            background: linear-gradient(135deg, rgba(35, 35, 35, 0.85) 0%, rgba(20, 20, 20, 0.95) 100%);
             border: 1px solid var(--glass-border);
             color: #ffffff !important;
-            font-weight: 500;
-            padding: 10px 24px;
+            font-weight: 600;
+            padding: 12px 32px;
             border-radius: 50px;
-            font-size: 1rem;
-            transition: all 0.2s;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+                        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
         }
         .btn-custom-outline:hover {
             border-color: var(--accent-bronze);
-            background: rgba(212, 175, 55, 0.1);
+            background: linear-gradient(135deg, rgba(45, 45, 45, 0.95) 0%, rgba(25, 25, 25, 1) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6),
+                        0 0 12px rgba(212, 175, 55, 0.2),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                        inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+            color: #ffffff !important;
+        }
+        .btn-custom-outline:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6),
+                        inset 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .hero-section {
@@ -217,6 +284,7 @@
             line-height: 1.2;
             color: #ffffff;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .section-title {
@@ -257,66 +325,21 @@
         [dir="ltr"] .justify-lg-alignment { justify-content: flex-start !important; }
 
         @media (max-width: 767.98px) {
-            body {
-                font-size: 0.95rem;
-            }
-            .navbar-brand img {
-                height: 45px;
-            }
-            .hero-section {
-                padding: 40px 0 30px 0;
-            }
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            .section-title {
-                font-size: 1.6rem;
-            }
-            .lead {
-                font-size: 1rem !important;
-            }
-            .container {
-                padding-left: 18px;
-                padding-right: 18px;
-            }
-            .glass-card {
-                padding: 1.25rem !important;
-                border-radius: 14px;
-            }
-            .portfolio-img-container {
-                height: 220px;
-            }
-            .btn-custom-primary, .btn-custom-outline {
-                padding: 8px 18px;
-                font-size: 0.9rem;
-            }
-            footer {
-                font-size: 0.85rem;
-                padding: 20px 0;
-            }
+            body { font-size: 0.95rem; }
+            .navbar-brand img { height: 45px; }
+            .hero-section { padding: 40px 0 30px 0; }
+            .hero-title { font-size: 1.8rem; }
+            .section-title { font-size: 1.6rem; }
+            .lead { font-size: 1rem !important; }
+            .container { padding-left: 18px; padding-right: 18px; }
+            .glass-card { padding: 1.25rem !important; border-radius: 16px; }
+            .portfolio-img-container { height: 220px; }
+            .btn-custom-primary, .btn-custom-outline { padding: 10px 24px; font-size: 0.95rem; }
         }
 
         @media (max-width: 991.98px) {
-            .hero-img-box {
-                padding: 6px !important;
-                border-radius: 16px;
-                margin-top: 20px;
-            }
-            .hero-img-container img {
-                max-height: 350px;
-                border-radius: 12px;
-            }
-        }
-
-        @media (max-width: 575.98px) {
-            .hero-img-box {
-                padding: 4px !important;
-                border-radius: 12px;
-            }
-            .hero-img-container img {
-                max-height: 260px;
-                border-radius: 10px;
-            }
+            .hero-img-box { padding: 6px !important; border-radius: 16px; margin-top: 20px; }
+            .hero-img-container img { max-height: 350px; border-radius: 12px; }
         }
     </style>
 </head>
@@ -351,10 +374,10 @@
         <div class="container">
             <div class="row align-items-center flex-lg-row">
                 <div class="col-lg-6 mb-4 mb-lg-0 text-lg-alignment" id="heroTextCol">
-                    <span class="badge px-3 py-2 rounded-pill mb-3 fw-normal" style="background: rgba(212, 175, 55, 0.12); color: var(--accent-bronze); font-size: 0.85rem;" data-ar="✨ استوديو تطوير الويب المبتكر" data-en="✨ Innovative Web Development Studio">✨ استوديو تطوير الويب المبتكر</span>
+                    <span class="badge px-3 py-2 rounded-pill mb-3 fw-normal" style="background: rgba(212, 175, 55, 0.15); color: var(--accent-bronze); font-size: 0.85rem;" data-ar="✨ استوديو تطوير الويب المبتكر" data-en="✨ Innovative Web Development Studio">✨ استوديو تطوير الويب المبتكر</span>
                     <h1 class="hero-title mb-3" data-ar="نبني لك مستقبلك الرقمي بأعلى احترافية" data-en="Build Your Digital Future with Excellence">نبني لك مستقبلك الرقمي بأعلى احترافية</h1>
                     <p class="lead mb-4" data-ar="نحول أفكارك إلى مواقع وتطبيقات ويب عصرية، فائقة السرعة، وبتصميم هادئ ومريح يلفت الانتباه." data-en="We transform your ideas into modern, lightning-fast web applications with clean and smooth design.">نحول أفكارك إلى مواقع وتطبيقات ويب عصرية، فائقة السرعة، وبتصميم هادئ ومريح يلفت الانتباه.</p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-lg-alignment" id="heroBtns">
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-lg-alignment" id="heroBtns">
                         <a href="#portfolio" class="btn btn-custom-primary" data-ar="شاهد أعمالنا 🚀" data-en="View Portfolio 🚀">شاهد أعمالنا 🚀</a>
                         <a href="#contact" class="btn btn-custom-outline" data-ar="اطلب مشروعك" data-en="Start Project">اطلب مشروعك</a>
                     </div>
@@ -386,6 +409,7 @@
         </div>
     </section>
 
+    <!-- قسم الخدمات (بكروت وأيقونات على شكل كبسولات دواء مجسمة بظلال منضبطة) -->
     <section id="services" class="py-4 py-lg-5">
         <div class="container py-3">
             <div class="row justify-content-center text-center mb-4">
@@ -396,22 +420,22 @@
             </div>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="glass-card p-4 h-100 text-lg-alignment">
-                        <div class="mb-3 fs-3" style="color: var(--accent-bronze);"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="service-capsule-card p-4 h-100 text-lg-alignment">
+                        <div class="service-icon-capsule mb-3"><i class="fa-solid fa-laptop-code"></i></div>
                         <h5 class="fw-bold mb-2 text-white" data-ar="تطوير الويب" data-en="Web Development">تطوير الويب</h5>
                         <p class="small mb-0" data-ar="مواقع متكاملة وسريعة متوافقة مع كافة الأجهزة." data-en="Complete and fast websites compatible with all devices.">مواقع متكاملة وسريعة متوافقة مع كافة الأجهزة.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="glass-card p-4 h-100 text-lg-alignment">
-                        <div class="mb-3 fs-3" style="color: var(--accent-bronze);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="service-capsule-card p-4 h-100 text-lg-alignment">
+                        <div class="service-icon-capsule mb-3"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                         <h5 class="fw-bold mb-2 text-white" data-ar="تصميم واجهات (UI/UX)" data-en="UI/UX Design">تصميم واجهات (UI/UX)</h5>
                         <p class="small mb-0" data-ar="تصاميم عصرية ومريحة للعين وتجربة استخدام سلسة." data-en="Modern, eye-pleasing designs and smooth UX.">تصاميم عصرية ومريحة للعين وتجربة استخدام سلسة.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="glass-card p-4 h-100 text-lg-alignment">
-                        <div class="mb-3 fs-3" style="color: var(--accent-bronze);"><i class="fa-solid fa-store"></i></div>
+                    <div class="service-capsule-card p-4 h-100 text-lg-alignment">
+                        <div class="service-icon-capsule mb-3"><i class="fa-solid fa-store"></i></div>
                         <h5 class="fw-bold mb-2 text-white" data-ar="متاجر إلكترونية" data-en="E-Commerce">متاجر إلكترونية</h5>
                         <p class="small mb-0" data-ar="متاجر مصغرة مجهزة بنظام طلب مباشر عبر الواتساب." data-en="Lightweight stores with direct WhatsApp ordering.">متاجر مصغرة مجهزة بنظام طلب مباشر عبر الواتساب.</p>
                     </div>
@@ -420,7 +444,6 @@
         </div>
     </section>
 
-    <!-- قسم أعمالنا مع الصور والروابط المحدثة -->
     <section id="portfolio" class="py-4 py-lg-5">
         <div class="container py-3">
             <div class="row justify-content-center text-center mb-4">
@@ -430,7 +453,6 @@
                 </div>
             </div>
             <div class="row g-4">
-                <!-- 1. أملاك عقارية -->
                 <div class="col-md-6 col-lg-4">
                     <div class="portfolio-card">
                         <div class="portfolio-img-container">
@@ -444,7 +466,6 @@
                     </div>
                 </div>
 
-                <!-- 2. تأجير سيارات -->
                 <div class="col-md-6 col-lg-4">
                     <div class="portfolio-card">
                         <div class="portfolio-img-container">
@@ -458,7 +479,6 @@
                     </div>
                 </div>
 
-                <!-- 3. مجيك ستور (Magic Store) -->
                 <div class="col-md-6 col-lg-4">
                     <div class="portfolio-card">
                         <div class="portfolio-img-container">
@@ -472,7 +492,6 @@
                     </div>
                 </div>
 
-                <!-- 4. برنامج الكاشير (بدون رابط) -->
                 <div class="col-md-6 col-lg-4">
                     <div class="portfolio-card">
                         <div class="portfolio-img-container">
@@ -489,7 +508,6 @@
         </div>
     </section>
 
-    <!-- قسم تواصل معنا ورقم الواتساب المصري المحدث -->
     <section id="contact" class="py-4 py-lg-5 mb-4">
         <div class="container py-3">
             <div class="row justify-content-center text-center">
