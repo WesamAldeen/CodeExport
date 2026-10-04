@@ -83,9 +83,14 @@
             font-weight: 500;
             transition: color 0.2s;
             font-size: 1.05rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            padding: 6px 12px !important;
         }
         .nav-link:hover, .nav-link.active {
             color: #ffffff !important;
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .glass-card, .portfolio-card {
@@ -206,7 +211,14 @@
             display: block;
         }
 
-        .btn-custom-primary {
+        /* 💧 تصميم الأزرار بمظهر السائل وتموجات الماء (مع منع خروج الموجة وتثبيت الإطار للهواتف) */
+        .btn-water-fluid, .btn-custom-outline, .lang-switch-btn, .nav-link, .interactive-btn {
+            position: relative !important;
+            overflow: hidden !important;
+            isolation: isolate;
+        }
+
+        .btn-water-fluid {
             background: linear-gradient(135deg, #f3d459 0%, #d4af37 50%, #aa8520 100%);
             border: none;
             color: #121212 !important;
@@ -214,24 +226,44 @@
             padding: 12px 32px;
             border-radius: 50px;
             font-size: 1.05rem;
+            cursor: pointer;
             box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3),
                         inset 0 2px 4px rgba(255, 255, 255, 0.7),
                         inset 0 -2px 4px rgba(0, 0, 0, 0.4);
-            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-            position: relative;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
         }
-        .btn-custom-primary:hover {
-            background: linear-gradient(135deg, #f7e070 0%, #e6c547 50%, #b89125 100%);
+
+        .btn-water-fluid:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5),
+                        inset 0 3px 6px rgba(255, 255, 255, 0.9),
+                        inset 0 -2px 4px rgba(0, 0, 0, 0.3);
             color: #121212 !important;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(212, 175, 55, 0.45),
-                        inset 0 3px 6px rgba(255, 255, 255, 0.85),
-                        inset 0 -2px 4px rgba(0, 0, 0, 0.35);
         }
-        .btn-custom-primary:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3),
-                        inset 0 2px 4px rgba(0, 0, 0, 0.4);
+
+        /* تأثير تموجات الماء السائلة (محصورة تماماً داخل الزر لتجنب تحريك الشاشة) */
+        .water-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(212,175,55,0.5) 60%, transparent 90%);
+            transform: scale(0);
+            animation: waterWaveEffect 0.5s linear forwards;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes waterWaveEffect {
+            0% {
+                transform: scale(0);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
 
         .whatsapp-btn {
@@ -249,26 +281,19 @@
             padding: 12px 32px;
             border-radius: 50px;
             font-size: 1.05rem;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4),
                         inset 0 1px 2px rgba(255, 255, 255, 0.2),
                         inset 0 -2px 4px rgba(0, 0, 0, 0.6);
-            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-            position: relative;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .btn-custom-outline:hover {
             border-color: var(--accent-bronze);
             background: linear-gradient(135deg, rgba(45, 45, 45, 0.95) 0%, rgba(25, 25, 25, 1) 100%);
             transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6),
-                        0 0 12px rgba(212, 175, 55, 0.2),
-                        inset 0 2px 4px rgba(255, 255, 255, 0.3),
-                        inset 0 -2px 4px rgba(0, 0, 0, 0.5);
             color: #ffffff !important;
-        }
-        .btn-custom-outline:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6),
-                        inset 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .hero-section {
@@ -295,7 +320,7 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: #ffffff;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 500;
@@ -330,7 +355,7 @@
             .container { padding-left: 18px; padding-right: 18px; }
             .glass-card { padding: 1.25rem !important; border-radius: 16px; }
             .portfolio-img-container { height: 220px; }
-            .btn-custom-primary, .btn-custom-outline { padding: 10px 24px; font-size: 0.95rem; }
+            .btn-water-fluid, .btn-custom-outline { padding: 10px 24px; font-size: 0.95rem; }
         }
 
         @media (max-width: 991.98px) {
@@ -345,21 +370,21 @@
 
     <nav class="navbar navbar-expand-lg navbar-glass">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center interactive-btn" href="#">
                 <img src="logo.png" alt="CodeExport Logo">
             </a>
-            <button class="navbar-toggler border-0 text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0 text-white shadow-none interactive-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center gap-3 mt-3 mt-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#hero" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio" data-ar="أعمالنا" data-en="Portfolio">أعمالنا</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                    <li class="nav-item"><a class="nav-link active interactive-btn" href="#hero" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link interactive-btn" href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
+                    <li class="nav-item"><a class="nav-link interactive-btn" href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+                    <li class="nav-item"><a class="nav-link interactive-btn" href="#portfolio" data-ar="أعمالنا" data-en="Portfolio">أعمالنا</a></li>
+                    <li class="nav-item"><a class="nav-link interactive-btn" href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
                     <li class="nav-item ms-lg-2">
-                        <button class="lang-switch-btn" id="langSwitchBtn" onclick="toggleLanguage()">🌐 English</button>
+                        <button class="lang-switch-btn interactive-btn" id="langSwitchBtn" onclick="toggleLanguage()">🌐 English</button>
                     </li>
                 </ul>
             </div>
@@ -374,8 +399,8 @@
                     <h1 class="hero-title mb-3" data-ar="نبني لك مستقبلك الرقمي بأعلى احترافية" data-en="Build Your Digital Future with Excellence">نبني لك مستقبلك الرقمي بأعلى احترافية</h1>
                     <p class="lead mb-4" data-ar="نحول أفكارك إلى مواقع وتطبيقات ويب عصرية، فائقة السرعة، وبتصميم هادئ ومريح يلفت الانتباه." data-en="We transform your ideas into modern, lightning-fast web applications with clean and smooth design.">نحول أفكارك إلى مواقع وتطبيقات ويب عصرية، فائقة السرعة، وبتصميم هادئ ومريح يلفت الانتباه.</p>
                     <div class="d-flex flex-wrap gap-3 justify-content-center justify-lg-alignment" id="heroBtns">
-                        <a href="#portfolio" class="btn btn-custom-primary" data-ar="شاهد أعمالنا 🚀" data-en="View Portfolio 🚀">شاهد أعمالنا 🚀</a>
-                        <a href="#contact" class="btn btn-custom-outline" data-ar="اطلب مشروعك" data-en="Start Project">اطلب مشروعك</a>
+                        <a href="#portfolio" class="btn btn-water-fluid interactive-btn" data-ar="شاهد أعمالنا 🚀" data-en="View Portfolio 🚀">شاهد أعمالنا 🚀</a>
+                        <a href="#contact" class="btn btn-custom-outline interactive-btn" data-ar="اطلب مشروعك" data-en="Start Project">اطلب مشروعك</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -456,7 +481,7 @@
                             <div class="portfolio-overlay">
                                 <h4 class="fw-bold text-white mb-2 fs-5" data-ar="دليل المدارس" data-en="Schools Directory">دليل المدارس</h4>
                                 <p class="small mb-3" data-ar="منصة شاملة للبحث عن المدارس واستعراض تفاصيلها." data-en="A comprehensive platform to search and explore schools.">منصة شاملة للبحث عن المدارس واستعراض تفاصيلها.</p>
-                                <a href="http://egyptschools.kesug.com" target="_blank" class="btn btn-custom-primary btn-sm px-4" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
+                                <a href="http://egyptschools.kesug.com" target="_blank" class="btn btn-water-fluid btn-sm px-4 interactive-btn" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
                             </div>
                         </div>
                     </div>
@@ -470,7 +495,7 @@
                             <div class="portfolio-overlay">
                                 <h4 class="fw-bold text-white mb-2 fs-5" data-ar="دليل الأطباء" data-en="Doctors Directory">دليل الأطباء</h4>
                                 <p class="small mb-3" data-ar="دليل طبي متكامل للبحث عن الأطباء وتخصصاتهم." data-en="An integrated medical directory to find doctors and specialties.">دليل طبي متكامل للبحث عن الأطباء وتخصصاتهم.</p>
-                                <a href="https://docguide.free.je" target="_blank" class="btn btn-custom-primary btn-sm px-4" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
+                                <a href="https://docguide.free.je" target="_blank" class="btn btn-water-fluid btn-sm px-4 interactive-btn" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
                             </div>
                         </div>
                     </div>
@@ -483,7 +508,7 @@
                             <div class="portfolio-overlay">
                                 <h4 class="fw-bold text-white mb-2 fs-5" data-ar="أملاك عقارية" data-en="Real Estate">أملاك عقارية</h4>
                                 <p class="small mb-3" data-ar="منصة متخصصة لعرض وإدارة العقارات." data-en="A specialized platform for real estate display and management.">منصة متخصصة لعرض وإدارة العقارات.</p>
-                                <a href="https://www.behance.net/gallery/139463881/_" target="_blank" class="btn btn-custom-primary btn-sm px-4" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
+                                <a href="https://www.behance.net/gallery/139463881/_" target="_blank" class="btn btn-water-fluid btn-sm px-4 interactive-btn" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
                             </div>
                         </div>
                     </div>
@@ -496,7 +521,7 @@
                             <div class="portfolio-overlay">
                                 <h4 class="fw-bold text-white mb-2 fs-5" data-ar="تأجير سيارات" data-en="Car Rental">تأجير سيارات</h4>
                                 <p class="small mb-3" data-ar="نظام حجز وتأجير السيارات الفاخرة." data-en="Luxury car booking and rental system.">نظام حجز وتأجير السيارات الفاخرة.</p>
-                                <a href="https://www.behance.net/gallery/149353013/_" target="_blank" class="btn btn-custom-primary btn-sm px-4" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
+                                <a href="https://www.behance.net/gallery/149353013/_" target="_blank" class="btn btn-water-fluid btn-sm px-4 interactive-btn" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
                             </div>
                         </div>
                     </div>
@@ -509,7 +534,7 @@
                             <div class="portfolio-overlay">
                                 <h4 class="fw-bold text-white mb-2 fs-5" data-ar="مجيك ستور" data-en="Magic Store">مجيك ستور</h4>
                                 <p class="small mb-3" data-ar="متجر إلكتروني متكامل للتسوق السريع." data-en="An integrated e-commerce store for fast shopping.">متجر إلكتروني متكامل للتسوق السريع.</p>
-                                <a href="http://magicstore.free.nf" target="_blank" class="btn btn-custom-primary btn-sm px-4" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
+                                <a href="http://magicstore.free.nf" target="_blank" class="btn btn-water-fluid btn-sm px-4 interactive-btn" data-ar="مشاهدة المشروع ↗" data-en="View Project ↗">مشاهدة المشروع ↗</a>
                             </div>
                         </div>
                     </div>
@@ -538,7 +563,7 @@
                     <div class="glass-card p-4 p-md-5 text-center">
                         <h3 class="fw-bold mb-2 text-white" style="font-size: 1.4rem;" data-ar="جاهز لبدء مشروعك القادم؟" data-en="Ready for Your Next Project?">جاهز لبدء مشروعك القادم؟</h3>
                         <p class="small mb-4" data-ar="دعنا نتحدث عن فكرتك ونحولها إلى واقع تقني مبهر." data-en="Let's discuss your idea and turn it into digital reality.">دعنا نتحدث عن فكرتك ونحولها إلى واقع تقني مبهر.</p>
-                        <a href="https://wa.me/201557704610" target="_blank" class="btn btn-custom-primary whatsapp-btn px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2 mx-auto">
+                        <a href="https://wa.me/201557704610" target="_blank" class="btn btn-water-fluid whatsapp-btn px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2 mx-auto interactive-btn">
                             <i class="fa-brands fa-whatsapp fs-5"></i> 
                             <span data-ar="تواصل معنا عبر واتساب" data-en="Contact via WhatsApp">تواصل معنا عبر واتساب</span>
                         </a>
@@ -573,6 +598,57 @@
             element.addEventListener('mouseleave', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(1)';
                 cursor.style.borderColor = '#d4af37';
+            });
+        });
+
+        // توليد صوت قطرة ماء نقي برمجياً (Web Audio API)
+        function playWaterSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.12);
+
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.12);
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.12);
+            } catch (e) {
+                console.log("الصوت يعمل فور التفاعل:", e);
+            }
+        }
+
+        // تفعيل الصوت وتأثير التموجات على الأزرار مع منع خروجها عن حدود الزر
+        document.querySelectorAll('.interactive-btn, .btn-water-fluid, .btn-custom-outline, .nav-link, .lang-switch-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                playWaterSound();
+
+                const circle = document.createElement('span');
+                const diameter = Math.max(this.clientWidth, this.clientHeight);
+                const radius = diameter / 2;
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - this.getBoundingClientRect().left - radius}px`;
+                circle.style.top = `${e.clientY - this.getBoundingClientRect().top - radius}px`;
+                circle.classList.add('water-ripple');
+
+                const existingRipple = this.getElementsByClassName('water-ripple')[0];
+                if (existingRipple) {
+                    existingRipple.remove();
+                }
+
+                this.appendChild(circle);
+
+                setTimeout(() => {
+                    circle.remove();
+                }, 500);
             });
         });
 
